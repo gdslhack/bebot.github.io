@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mikrostok - Sistem Manajemen Pekerjaan</title>
+    <script>
+        // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark')
+        } else {
+          document.documentElement.classList.remove('dark')
+        }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          darkMode: 'class'
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 dark:bg-gray-900">
+    <div class="flex h-screen">
+        <!-- Navbar -->
+        <nav id="navbar" class="w-64 bg-white dark:bg-gray-800 shadow-md flex-shrink-0 transition-all duration-300">
+            <div class="p-4 flex justify-between items-center">
+                <h2 id="menu-title" class="text-xl font-bold text-gray-900 dark:text-white">Menu</h2>
+                <button id="toggle-navbar" class="text-gray-900 dark:text-white">
+                    <i id="navbar-icon" class="fas fa-chevron-left"></i>
+                </button>
+            </div>
+            <ul class="mt-4">
+                <li><a href="add-job.html" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"><i class="fas fa-plus w-6 text-center"></i><span class="ml-2">Tambah Service</span></a></li>
+                <li><a href="pengaturan.html" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"><i class="fas fa-cog w-6 text-center"></i><span class="ml-2">Pengaturan</span></a></li>
+                <li><a href="mikrostok.html" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-300 bg-gray-200 dark:bg-gray-700"><i class="fas fa-box w-6 text-center"></i><span class="ml-2">Mikrostok</span></a></li>
+                <li><a href="notifikasi.html" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"><i class="fas fa-bell w-6 text-center"></i><span class="ml-2">Notifikasi</span></a></li>
+                <li><a href="rekap-pekerjaan.html" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"><i class="fas fa-file-excel w-6 text-center"></i><span class="ml-2">Rekap Pekerjaan</span></a></li>
+                <li><a href="rekap-stok.html" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"><i class="fas fa-file-excel w-6 text-center"></i><span class="ml-2">Rekap Stok</span></a></li>
+                <li><a href="kirim-invoice.html" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"><i class="fas fa-paper-plane w-6 text-center"></i><span class="ml-2">Kirim Invoice</span></a></li>
+                <li><a href="#" id="logout" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"><i class="fas fa-sign-out-alt w-6 text-center"></i><span class="ml-2">Logout</span></a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Mikrostok</h1>
+                <div class="flex items-center space-x-4">
+                    <button id="add-product-button" class="px-4 py-2 font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        Tambah Produk
+                    </button>
+                    <button id="toggle-dark-mode" class="p-2 rounded-md text-gray-900 dark:text-white bg-gray-200 dark:bg-gray-700">
+                        <i id="dark-mode-icon" class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Data Table -->
+            <div class="bg-white rounded-lg shadow-md dark:bg-gray-800">
+                <table class="w-full table-auto">
+                    <thead class="bg-gray-200 dark:bg-gray-700">
+                        <tr>
+                            <th class="px-4 py-2 text-left text-gray-700 dark:text-gray-300">Nama Produk</th>
+                            <th class="px-4 py-2 text-left text-gray-700 dark:text-gray-300">Stok</th>
+                            <th class="px-4 py-2 text-left text-gray-700 dark:text-gray-300">Harga</th>
+                            <th class="px-4 py-2 text-left text-gray-700 dark:text-gray-300">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="products-table-body">
+                        <!-- Product rows will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="main.js"></script>
+    <script type="module" src="mikrostok.js"></script>
+</body>
+</html>

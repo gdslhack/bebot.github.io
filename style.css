@@ -1,0 +1,10 @@
+/* Basic styles */
+body {
+    font-family: sans-serif;
+    background-color: #ffffff; /* White background for light mode */
+}
+
+/* Dark mode styles */
+.dark body {
+    background-color: #111827; /* Darker background for dark mode */
+}
